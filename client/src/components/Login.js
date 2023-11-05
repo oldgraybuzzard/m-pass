@@ -31,6 +31,29 @@ function Login() {
       if (response && response.account) {
         setUserProfile(response.account);
         setLoggedIn(true);
+        
+        // Create an object with user information to send to the server
+        const userInfo = {
+          name: response.account.name,
+          email: response.account.userName, // Use the appropriate property for the email
+          // Add other user properties as needed
+        };
+
+        // Make an HTTP request to your server to send user information
+        fetch('/api/update-user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log('User information sent to server:', data);
+          })
+          .catch((error) => {
+            console.error('Error sending user information:', error);
+          });
       }
     } catch (error) {
       console.log(error);
