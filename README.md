@@ -1,70 +1,80 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">
+🌐 M-PASS
+</h1>
+<p align="center">
+<img src="https://img.shields.io/badge/javascript-yellow" />
+    <img src="https://img.shields.io/badge/mongoDB-purple" />
+    <img src="https://img.shields.io/badge/express-red" />
+    <img src="https://img.shields.io/badge/react-green" />
+    <img src="https://img.shields.io/badge/graphQL-yellow" />
+    <img src="https://img.shields.io/badge/apollo-blue" />
+</p>
 
-## Available Scripts
 
-In the project directory, you can run:
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![license](https://img.shields.io/github/license/t-ho/mern-stack)](https://github.com/t-ho/mern-stack/blob/master/LICENSE)
+ [![npm version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/react)[![npm version](https://badge.fury.io/js/graphql.svg)](https://badge.fury.io/js/graphql)
+ <img src="https://img.shields.io/badge/CRM-ReactJS-blue?logo=react">
+<img src="https://img.shields.io/badge/Backend-NodeJS-green?logo=node.js">
+<img src="https://img.shields.io/badge/DataBase-MongoDB-lightgreen?logo=mongoDB">
 
-### `npm start`
+## ⚡️ Quick start
+Run `npm i` to install [npm](https://www.npmjs.com/) dependencies! 
+Follow by `npm run develop`🎉
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📖 Project 
+```
+AS AN employer
+I WANT to proivde a way for employees to securely store password. 
+SO THAT they can retrieve password needed for the various applications they need for work.
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ⚙️ Commands & Options
+To start `server`, `client`, run:
 
-### `npm test`
+```bash
+# In the root directory (mern):
+  npm start 
+# Server API is running at http://localhost:SERVER_PORT (http://localhost: by default)
+# Web client is running at http://localhost:PORT (http://localhost:3001 by default)
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Screenshots📝
 
-### `npm run build`
+### `deploy`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Backend
+ - [x] Authentication system - [jasonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+    - [x] Sign up - [bcrypt](https://www.npmjs.com/package/bcrypt)
+    - [x] Local login - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+    - [x] Email verification
+    - [x] Password verification
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Frontend
+- Directory `client`
+- Created by using [create-react-app](https://www.npmjs.com/package/create-react-app)
+ 
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## ⭐️ Project assistance
+Want to contribute? Great!
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To fix a bug or enhance an existing module, follow these steps:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Fork the repo
+- Create a new branch (`git checkout -b improve-feature`)
+- Make the appropriate changes in the files
+- Add changes to reflect the changes made
+- Commit your changes (`git commit -am 'Improve feature'`)
+- Push to the branch (`git push origin improve-feature`)
+- Create a Pull Request 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+Together, we can make this project **better** every day! 😘
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## ⚠️ License
+This project is licensed under MIT.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[![ForTheBadge built-with-swag](http://ForTheBadge.com/images/badges/built-with-swag.svg)](https://GitHub.com/oldgraybuzzard/crispy-giggle)
