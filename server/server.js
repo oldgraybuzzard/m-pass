@@ -9,6 +9,36 @@ const { User } = require('./models'); // Import the User model
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Check if the environment is production
+const isProduction = process.env.NODE_ENV === 'production';
+
+// Enable HTTPS only in production
+if (isProduction) {
+  const https = require('https');
+  const fs = require('fs');
+  
+  // Load SSL certificate and key
+  const privateKeyPath = process.env.PRIVATE_KEY_PATH;
+  const certificatePath = process.env.CERTIFICATE_PATH;
+  const credentials = {
+    key: fs.readFileSync(privateKeyPath, 'utf8'),
+    cert: fs.readFileSync(certificatePath, 'utf8')
+  };
+
+// Create an HTTPS server
+const httpsServer = https.createServer(credentials, app);
+
+  // Start the HTTPS server
+  httpsServer.listen(443, () => {
+    console.log('Server is running on port 443 (HTTPS)');
+  });
+} else {
+  // In development, use HTTP
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT} (HTTP)`);
+  });
+}
+
 const startServer = async () => {
   const server = new ApolloServer({
     typeDefs,
@@ -50,7 +80,7 @@ app.post('/api/update-user', (req, res) => {
 });
 
 // Serve static assets in production
-if (process.env.NODE_ENV === 'production') {
+if (isProduction) {
   app.use(express.static(path.join(__dirname, '../client/build')));
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
@@ -59,6 +89,6 @@ if (process.env.NODE_ENV === 'production') {
 
 db.once('open', () => {
   app.listen(PORT, () => {
-    console.log(`🌍 Now listening on localhost:${PORT}!`);
+    console.log(`🌍 Now listening on localhost:${PORT}! Connected to MongoDB.`);
   });
 });
