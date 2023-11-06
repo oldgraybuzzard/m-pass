@@ -8,6 +8,7 @@ const { User } = require('./models'); // Import the User model
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const DEV_PORT = process.env.DEV_PORT || 8080; 
 
 // Check if the environment is production
 const isProduction = process.env.NODE_ENV === 'production';
@@ -88,7 +89,17 @@ if (isProduction) {
 }
 
 db.once('open', () => {
-  app.listen(PORT, () => {
-    console.log(`🌍 Now listening on localhost:${PORT}! Connected to MongoDB.`);
-  });
+  console.log(`Connected to MongoDB.`);
+  
+  if (isProduction) {
+    // Start the HTTPS server in production mode
+    httpsServer.listen(443, () => {
+      console.log('Server is running on port 443 (HTTPS)');
+    });
+  } else {
+    // Start the HTTP server in development mode
+    app.listen(DEV_PORT, () => {
+      console.log(`Server is running on port ${DEV_PORT} (HTTP)`);
+    });
+  }
 });
