@@ -120,30 +120,3 @@ greenlock
     // Serves on 80 and 443
     // Get's SSL certificates magically!
     .serve(app);
-
-// const lex = greenlock.create({
-//   // Let's Encrypt account and domain configuration
-//   server: 'https://acme-v02.api.letsencrypt.org/directory',
-//   email: 'kfelder@melken-solutions.com',
-//   agreeTos: true,
-//   approveDomains: (opts, certs, cb) => {
-//     if (certs) {
-//       opts.domains = ['melken-solutions.com', 'www.melken-solutions.com']; // Add your domain names here
-//     } else {
-//       opts.email = 'kfelder@melken-solutions.com';
-//       opts.agreeTos = true;
-//     }
-//     cb(null, { options: opts, certs });
-//   },
-//   store: require('greenlock-store-fs'), // Use file-based certificate storage
-//   web: {
-//     server,
-//     root: './public',
-//   },
-//   challenges: {
-//     'http-01': {
-//       module: 'acme-http-01-webroot',
-//       webroot: './public',
-//     },
-//   },
-// });
