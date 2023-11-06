@@ -4,11 +4,15 @@ const { ApolloServer } = require('apollo-server-express');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const { authMiddleware } = require('./utils/auth');
-const { User } = require('./models'); // Import the User model
+const { User } = require('./models');
+const http = require('http'); // Import http here
+const greenlock = require('greenlock-express');
 
-const app = express();
+const app = express(); // Define 'app' here
+const server = http.createServer(app); // Create HTTP server using 'app'
+
 const PORT = process.env.PORT || 3001;
-const DEV_PORT = process.env.DEV_PORT || 8080; 
+const DEV_PORT = process.env.DEV_PORT || 8080;
 
 // Check if the environment is production
 const isProduction = process.env.NODE_ENV === 'production';
@@ -26,12 +30,12 @@ if (isProduction) {
     cert: fs.readFileSync(certificatePath, 'utf8')
   };
 
-// Create an HTTPS server
-const httpsServer = https.createServer(credentials, app);
+  // HTTPS Server Configuration
+  const httpsServer = greenlock.httpsOptions.createServer(credentials, app);
 
   // Start the HTTPS server
   httpsServer.listen(443, () => {
-    console.log('Server is running on port 443 (HTTPS)');
+    console.log('Greenlock Express server is listening on port 443 (HTTPS)');
   });
 } else {
   // In development, use HTTP
@@ -73,7 +77,7 @@ app.post('/api/update-user', (req, res) => {
         console.error('Error updating user:', err);
         res.status(500).json({ error: 'Internal server error' });
       } else {
-        console.log('User updated:', user);        
+        console.log('User updated:', user);
       }
     }
   );
@@ -90,12 +94,10 @@ if (isProduction) {
 
 db.once('open', () => {
   console.log(`Connected to MongoDB.`);
-  
+
   if (isProduction) {
-    // Start the HTTPS server in production mode
-    httpsServer.listen(443, () => {
-      console.log('Server is running on port 443 (HTTPS)');
-    });
+    // HTTP Challenge (for Let's Encrypt)
+    http.createServer(greenlock.middleware(require('redirect-https')())).listen(80);
   } else {
     // Start the HTTP server in development mode
     app.listen(DEV_PORT, () => {
@@ -103,3 +105,45 @@ db.once('open', () => {
     });
   }
 });
+
+//require("greenlock-express")
+greenlock
+    .init({
+        packageRoot: __dirname,
+        configDir: "./greenlock.d",
+
+        maintainerEmail: "kfelder@melken-solutions.com",
+
+        cluster: false
+    })
+
+    // Serves on 80 and 443
+    // Get's SSL certificates magically!
+    .serve(app);
+
+// const lex = greenlock.create({
+//   // Let's Encrypt account and domain configuration
+//   server: 'https://acme-v02.api.letsencrypt.org/directory',
+//   email: 'kfelder@melken-solutions.com',
+//   agreeTos: true,
+//   approveDomains: (opts, certs, cb) => {
+//     if (certs) {
+//       opts.domains = ['melken-solutions.com', 'www.melken-solutions.com']; // Add your domain names here
+//     } else {
+//       opts.email = 'kfelder@melken-solutions.com';
+//       opts.agreeTos = true;
+//     }
+//     cb(null, { options: opts, certs });
+//   },
+//   store: require('greenlock-store-fs'), // Use file-based certificate storage
+//   web: {
+//     server,
+//     root: './public',
+//   },
+//   challenges: {
+//     'http-01': {
+//       module: 'acme-http-01-webroot',
+//       webroot: './public',
+//     },
+//   },
+// });
