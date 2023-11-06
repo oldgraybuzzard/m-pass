@@ -16,11 +16,23 @@ db.once('open', async () => {
       lastName: 'Doe',
       email: 'johndoe@example.com',
     },
+    {
+      firstName: 'Jim',
+      lastName: 'Beam',
+      email: 'jbeam@test.com',
+    },
     // Add more user objects as needed
   ]);
   console.log('users seeded');
 
   const passwordData = await Password.create([
+    {
+      name: 'Website Login',
+      category: 'Login',
+      email: 'jbeam@test.com', // Associate with a user
+      username: 'jbeam',
+      password: 'password123',
+    },
     {
       name: 'Website Login',
       category: 'Login',
