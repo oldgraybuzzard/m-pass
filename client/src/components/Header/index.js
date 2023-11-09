@@ -1,26 +1,34 @@
-import React, { useState} from "react";
-import { Link } from 'react-router-dom';
-import Nav from 'react-bootstrap/Nav';
+import React from "react";
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
+import Button from'react-bootstrap/Button';
 
-import Auth from '../../utils/auth';
-
-const Header = () => {
-  const logout = event => {
-    event.preventDefault();
-    Auth.logout();
-  };
-
+function Header({ userProfile, handleLogin, handleLogout }) {
   return (
-    <Navbar>
+    <Navbar className="bg-body-tertiary">
       <Container>
-        <Nav.Link href="#home">Home</Nav.Link>
+        <Navbar.Brand href="#home">Home</Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end">
+          {userProfile ? (
+            <div>
+              <Navbar.Text>
+                Signed in as: <a>{userProfile.name}   </a>
+              </Navbar.Text>
+              <Button variant="secondary" size="sm" onClick={handleLogout}>
+                Logout
+              </Button>
+            </div>
+          ) : (
+            <Button variant="secondary" size="sm" onClick={handleLogin}>
+              Employee Login
+            </Button>
+          )}
 
+        </Navbar.Collapse>
       </Container>
     </Navbar>
-
   );
-};
+}
 
 export default Header;

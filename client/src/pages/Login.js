@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { PublicClientApplication } from "@azure/msal-browser";
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
+import Header from "../components/Header";
 
 const msalConfig = {
   auth: {
@@ -61,6 +62,19 @@ function Login() {
     }
   };
 
+    const handleLogout = async () => {
+    // You can add any necessary logic to clear user session or perform logout actions here.
+    // For example, if you're using MSAL for authentication, you can call its logout method.
+    try {
+      await msalInstance.logout();
+      setUserProfile(null); // Clear the user profile state
+      setLoggedIn(false); // Set the logged-in state to false
+    } catch (error) {
+      console.log("Logout error:", error);
+      // Handle any error that occurs during logout.
+    }
+  };
+
    const handleGoToPasswordList = () => {
     // Implement navigation to the password list page here
   };
@@ -81,6 +95,8 @@ function Login() {
 
   return (
     <div>
+      {/* Pass userProfile as a prop to the Header component */}
+      <Header userProfile={userProfile} handleLogin={handleLogin} handleLogout={handleLogout}/>
       <div className="login-container">
         <h1>M-PASS</h1>
         <h3>Melken Solutions Employee Password Manager</h3>
