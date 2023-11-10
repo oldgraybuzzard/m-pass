@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { PublicClientApplication } from "@azure/msal-browser";
 import Login from './pages/Login';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import PassList from './pages/PassList';
 
 const msalConfig = {
@@ -116,6 +117,7 @@ function App() {
         />
         <Route path="/passlist" component={PassList} /> {/* Add this route */}
       </Switch>
+      <Footer />
     </Router>
   );
 }
