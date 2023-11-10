@@ -2,7 +2,7 @@ window.env = {
   "ACLOCAL_PATH": "C:\\Program Files\\Git\\mingw64\\share\\aclocal;C:\\Program Files\\Git\\usr\\share\\aclocal",
   "ALLUSERSPROFILE": "C:\\ProgramData",
   "APPDATA": "C:\\Users\\kfelder\\AppData\\Roaming",
-  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_7260_GIOPBBDXVCXAGWHH",
+  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_7992_IGUPIEVQJLLJIZJF",
   "COLOR": "1",
   "COLORTERM": "truecolor",
   "COMMONPROGRAMFILES": "C:\\Program Files\\Common Files",
@@ -14,10 +14,8 @@ window.env = {
   "DISPLAY": "needs-to-be-defined",
   "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
   "EDITOR": "C:\\Windows\\notepad.exe",
-  "EFC_13648": "0",
+  "EFC_6684": "0",
   "EXEPATH": "C:\\Program Files\\Git\\bin",
-  "FPS_BROWSER_APP_PROFILE_STRING": "Internet Explorer",
-  "FPS_BROWSER_USER_PROFILE_STRING": "Default",
   "GIT_ASKPASS": "c:\\Users\\kfelder\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass.sh",
   "HOME": "C:\\Users\\kfelder",
   "HOMEDRIVE": "C:",
@@ -97,7 +95,7 @@ window.env = {
   "TEMP": "C:\\Users\\kfelder\\AppData\\Local\\Temp",
   "TERM": "xterm-256color",
   "TERM_PROGRAM": "vscode",
-  "TERM_PROGRAM_VERSION": "1.84.1",
+  "TERM_PROGRAM_VERSION": "1.84.2",
   "TMP": "C:\\Users\\kfelder\\AppData\\Local\\Temp",
   "TMPDIR": "C:\\Users\\kfelder\\AppData\\Local\\Temp",
   "USERDNSDOMAIN": "MELKEN.MELKEN-SOLUTIONS.COM",
@@ -112,5 +110,6 @@ window.env = {
   "VSCODE_INSPECTOR_OPTIONS": ":::{\"inspectorIpc\":\"\\\\\\\\.\\\\pipe\\\\node-cdp.5448-cbbc45d5-0.sock.deferred\",\"deferredMode\":true,\"waitForDebugger\":\"\",\"execPath\":\"C:\\\\Program Files\\\\nodejs\\\\node.exe\",\"onlyEntrypoint\":false,\"autoAttachMode\":\"smart\",\"aaPatterns\":[\"c:/Users/kfelder/Desktop/Projects/GitHub/m-pass/**\",\"!**/node_modules/**\",\"**/$KNOWN_TOOLS$/**\"]}",
   "WINDIR": "C:\\Windows",
   "ZES_ENABLE_SYSMAN": "1",
-  "_": "C:/Program Files/nodejs/node.exe"
+  "_": "C:/Program Files/nodejs/node.exe",
+  "__COMPAT_LAYER": "DetectorsAppHealth"
 };
