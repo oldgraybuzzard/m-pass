@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from "react-bootstrap/esm/Container";
 import { useHistory } from 'react-router-dom';
+import Auth from '../utils/auth';
 
 function Login({ handleLogin, loggedIn, termsAccepted, userProfile }) {
   const [acceptTerms, setAcceptTerms] = useState(false);

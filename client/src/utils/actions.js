@@ -1,0 +1,2 @@
+export const GET_PASSWORDS = 'GET_PASSWORDS';
+export const CREATE_PASSWORD = 'CREATE_PASSWORD';

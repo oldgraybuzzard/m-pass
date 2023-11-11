@@ -1,18 +1,49 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import { useQuery, useMutation, gql } from '@apollo/client';
+import { GET_PASSWORDS, CREATE_PASSWORD } from '../utils/mutations';
 
 function PassList() {
-  // Initialize state variables
-  const [user, setUser] = useState(null); // User information
-  const [passwords, setPasswords] = useState([]); // List of passwords
-  const [newPassword, setNewPassword] = useState(''); // Input for adding a new password
+  const { loading, error, data } = useQuery(GET_PASSWORDS);
+  const [createPassword] = useMutation(CREATE_PASSWORD);
+  const [name, setName] = useState(null); // Define user state
+  const [newPassword, setNewPassword] = useState(''); // Define newPassword state
+  const [passwords, setPasswords] = useState([]); // Define passwords state
 
-  // Define a function to mask passwords
+  // Fetch user data from your server
+  useEffect(() => {
+    fetch('/api/user')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((userData) => {
+        // Update the user state with the fetched data
+        setUser(userData);
+      })
+      .catch((error) => {
+        console.error('Error fetching user data:', error);
+        // Handle errors here, such as redirecting to a login page or displaying an error message
+      });
+  }, []);
+
+
+  useEffect(() => {
+    if (!loading && !error) {
+      // Data is available after the query has successfully completed
+      const passwordData = data.passwords;
+
+      // Update the passwords state with the fetched data
+      setPasswords(passwordData);
+    }
+  }, [data, loading, error]);
+
   const maskPassword = (password) => {
     // Implement password masking logic here
     return '****'; // Replace with your masking logic
   };
 
-  // Define a function to handle adding new passwords
   const handleAddPassword = () => {
     // Create a new password object and add it to the passwords state
     const newPasswordObject = {
@@ -21,25 +52,23 @@ function PassList() {
       password: newPassword,
     };
 
+    // You should also send the new password to your server using the `createPassword` mutation
+    createPassword({
+      variables: {
+        username: newPasswordObject.username,
+        name: newPasswordObject.name,
+        password: newPasswordObject.password,
+        category: newPasswordObject.category,
+        email: newPasswordObject.email,
+      },
+    });
+
+    // Update the passwords state with the new password
     setPasswords([...passwords, newPasswordObject]);
+
+    // Clear the newPassword input field
     setNewPassword('');
   };
-
-  useEffect(() => {
-    // Fetch password data here and update the passwords state
-    // Example: fetchPasswords().then((data) => setPasswords(data));
-
-    // In this useEffect, you should fetch the user's password data and set it in the passwords state.
-    // Replace the example code above with your actual API call to fetch passwords.
-    // For now, you can manually add some sample passwords to the state for testing.
-
-    const samplePasswords = [
-      { user: "John Doe", website: "Website 1", password: "password123" },
-      { user: "Jane Smith", website: "Website 2", password: "securePassword" },
-    ];
-
-    setPasswords(samplePasswords);
-  }, []); // The empty dependency array ensures this effect runs once when the component mounts
 
   return (
     <div>
